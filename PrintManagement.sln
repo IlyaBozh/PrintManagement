@@ -5,6 +5,8 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintManagement.Api", "PrintManagement.Api\PrintManagement.Api.csproj", "{FBB571B4-812B-4F80-94EE-E89559DFE98C}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "PrintManagement.DB", "PrintManagement.DB\PrintManagement.DB.sqlproj", "{43EABF27-A4EE-4A9A-A842-CB3614B07EE1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,12 @@ Global
 		{FBB571B4-812B-4F80-94EE-E89559DFE98C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBB571B4-812B-4F80-94EE-E89559DFE98C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBB571B4-812B-4F80-94EE-E89559DFE98C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43EABF27-A4EE-4A9A-A842-CB3614B07EE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43EABF27-A4EE-4A9A-A842-CB3614B07EE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43EABF27-A4EE-4A9A-A842-CB3614B07EE1}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{43EABF27-A4EE-4A9A-A842-CB3614B07EE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43EABF27-A4EE-4A9A-A842-CB3614B07EE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43EABF27-A4EE-4A9A-A842-CB3614B07EE1}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
