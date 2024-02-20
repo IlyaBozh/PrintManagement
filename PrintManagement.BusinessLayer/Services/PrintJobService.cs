@@ -1,7 +1,11 @@
-﻿using PrintManagement.BusinessLayer.Models;
+﻿using CsvHelper;
+using Microsoft.VisualBasic.FileIO;
+using PrintManagement.BusinessLayer.Models;
 using PrintManagement.BusinessLayer.Services.Interfaces;
 using PrintManagement.DataLayer.Models;
 using PrintManagement.DataLayer.Repositories.Interfaces;
+using System.Globalization;
+using System.Text;
 
 namespace PrintManagement.BusinessLayer.Services;
 
@@ -40,7 +44,37 @@ public class PrintJobService : IPrintJobService
 
         var result = await _printJobRepository.RegistrationJob(printJobDto);
 
+        Thread.Sleep(5000);
+
         return result;
+    }
+
+    public async Task RegistrationJobFromCSV(Stream file)
+    {
+        using (var parser = new TextFieldParser(file))
+        {
+            parser.TextFieldType = FieldType.Delimited;
+            parser.SetDelimiters(",");
+            while (!parser.EndOfData)
+            {
+                string[] fields = parser.ReadFields();
+
+                var data = fields[0].Split(';');
+
+                if (data.Count() != 4)
+                    continue;
+
+                var printJob = new PrintJobModel
+                {
+                    JobName = data[0],
+                    EmployeeId = int.Parse(data[1]),
+                    PrinterSerialNumber = int.Parse(data[2]),
+                    PagesCount = int.Parse(data[3])
+                };
+
+                await RegistrationJob(printJob);
+            }
+        }
     }
 
     private async Task<int> GetBranchPrinterId(PrintJobModel printJob)

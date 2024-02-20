@@ -29,4 +29,14 @@ public class PrintJobController : ControllerBase
 
         return Created($"{this.GetUrl()}/{result}", result);
     }
+
+    [HttpPost("[action]")]
+    [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(void), StatusCodes.Status422UnprocessableEntity)]
+    public async Task<ActionResult<int>> RegistrationJobFromCSV([FromForm] IFormFileCollection file)
+    {
+        await _printJobService.RegistrationJobFromCSV(file[0].OpenReadStream());
+
+        return NoContent();
+    }
 }
