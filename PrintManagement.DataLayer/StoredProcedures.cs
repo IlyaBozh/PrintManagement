@@ -19,4 +19,6 @@ public class StoredProcedures
     public const string BranchPrinter_GetById = "BranchPrinter_GetById";
     public const string BranchPrinter_GetByBranchId = "BranchPrinter_GetByBranchId";
     public const string BranchPrinter_UpdateIsDefault = "BranchPrinter_UpdateIsDefault";
+   
+    public const string PrintJob_Add = "PrintJob_Add";
 }
