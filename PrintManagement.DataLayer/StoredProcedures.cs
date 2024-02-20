@@ -8,6 +8,7 @@ public class StoredProcedures
     public const string Branch_GetById = "Branch_GetById";
 
     public const string Employee_GetAll = "Employee_GetAll";
+    public const string Employee_GetById = "Employee_GetById";
 
     public const string Printer_GetAll = "Printer_GetAll";
     public const string Printer_GetByName = "Printer_GetByName";

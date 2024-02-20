@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[PrintJob_Add]
-	@JobName nvarchar,
+	@JobName nvarchar(100),
 	@PagesCount int,
 	@JobStatus bit,
 	@EmployeeId int,

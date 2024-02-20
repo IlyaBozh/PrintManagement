@@ -18,4 +18,14 @@ public class EmployeeRepository : BaseRepository, IEmployeeRepository
 
         return employees;
     }
+
+    public async Task<EmployeeDto> GetEmployeeById(int employeeId)
+    {
+        var employee = (await _connectionString.QueryAsync<EmployeeDto>(
+            StoredProcedures.Employee_GetById,
+            param: new { employeeId },
+            commandType: CommandType.StoredProcedure))
+            .FirstOrDefault();
+        return employee;
+    }
 }
