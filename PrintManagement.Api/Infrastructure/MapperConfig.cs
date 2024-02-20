@@ -16,6 +16,8 @@ public class MapperConfig : Profile
             .ForMember(b => b.BranchLocation, opt => opt.MapFrom(s => s.BranchLocation.ToString().Replace('_', ' ')));
         
         CreateMap<EmployeeDto, AllEmployeeResponse>();
+
+        CreateMap<NewPrintJobRequest, PrintJobModel>();
         
         CreateMap<PrinterDto, AllPrinterResponse>()
             .ForMember(b => b.PrinterName, opt => opt.MapFrom(s => s.PrinterName.ToString().Replace('_', ' ')))

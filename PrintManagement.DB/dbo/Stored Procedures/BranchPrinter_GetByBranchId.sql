@@ -5,7 +5,8 @@ AS
 BEGIN
 	SELECT 
 		BranchPrinterId,
-		PrinterSerialNumber
+		PrinterSerialNumber,
+		IsDefault
 	FROM [dbo].[BranchPrinter]
 	WHERE BranchId=@BranchId
 END
