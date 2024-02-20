@@ -7,5 +7,5 @@
 	[EmployeeId]                INT                   NOT NULL,
 	[BranchPrinterId]           INT                   NOT NULL,
 	FOREIGN KEY ([EmployeeId]) REFERENCES [dbo].[Employee] ([EmployeeId]),
-	FOREIGN KEY ([BranchPrinterId]) REFERENCES [dbo].[BranchPrinter] ([BranchPrinterId])
+	FOREIGN KEY ([BranchPrinterId]) REFERENCES [dbo].[BranchPrinter] ([BranchPrinterId]) ON DELETE CASCADE
 )

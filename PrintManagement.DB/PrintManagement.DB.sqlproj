@@ -69,5 +69,8 @@
     <Build Include="dbo\Stored Procedures\Branch_GetAll.sql" />
     <Build Include="dbo\Stored Procedures\Employee_GetAll.sql" />
     <Build Include="dbo\Stored Procedures\Printer_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\BranchPrinter_Add.sql" />
+    <Build Include="dbo\Stored Procedures\BranchPrinter_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\BranchPrinter_GetById.sql" />
   </ItemGroup>
 </Project>

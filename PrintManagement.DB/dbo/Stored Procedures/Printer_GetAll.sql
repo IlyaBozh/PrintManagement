@@ -8,5 +8,4 @@ BEGIN
 		ConnectionType,
 		MACAddress
 	FROM dbo.Printer
-
 END

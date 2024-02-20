@@ -6,5 +6,4 @@ BEGIN
 		EmployeeId,
 		EmployeeName
 	FROM dbo.Employee
-
 END
