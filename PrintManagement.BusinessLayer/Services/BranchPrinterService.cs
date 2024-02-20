@@ -1,4 +1,5 @@
-﻿using PrintManagement.BusinessLayer.Models;
+﻿using PrintManagement.BusinessLayer.Exceptions;
+using PrintManagement.BusinessLayer.Models;
 using PrintManagement.BusinessLayer.Services.Interfaces;
 using PrintManagement.DataLayer.Enums;
 using PrintManagement.DataLayer.Models;
@@ -27,9 +28,7 @@ public class BranchPrinterService : IBranchPrinterService
         {
             PrinterId = printerId,
             BranchId = branchId,
-            PrinterSerialNumber = printerInstallationInfo.PrinterSerialNumber == 0 
-            ? await GetPrinterSerialNumber(printerInstallationInfo.BranchName) 
-            : printerInstallationInfo.PrinterSerialNumber,
+            PrinterSerialNumber = await GetPrinterSerialNumber(printerInstallationInfo.BranchName, printerInstallationInfo.PrinterSerialNumber),
             IsDefault = await GetPrinterIsDefault(printerInstallationInfo.BranchName)
         };
 
@@ -41,6 +40,9 @@ public class BranchPrinterService : IBranchPrinterService
     public async Task DeleteInstallation(int installationId)
     {
         var branchPrinter = await _branchPrinterRepository.GetInstallationById(installationId);
+
+        if (branchPrinter == null)
+            throw new NotFoundException("Инсталляция не найдена");
 
         await _branchPrinterRepository.DeleteInstallation(installationId);
 
@@ -63,9 +65,43 @@ public class BranchPrinterService : IBranchPrinterService
         return result;
     }
 
+
+    public async Task<List<BranchPrinterModel>> GetInstallationsByBranchName(string branchName)
+    {
+        BranchName branchNameEnum;
+
+        try
+        {
+            branchNameEnum = (BranchName)Enum.Parse(typeof(BranchName), branchName.Replace(' ', '_'));
+        }
+        catch
+        {
+            throw new IncorrectDataException("Неверное название филиала");
+        }
+
+        var branchPrinters = await _branchPrinterRepository.GetAllInstallations();
+        var branches = await _branchRepository.GetBranchByName(branchNameEnum);
+
+        var result = new List<BranchPrinterModel>();
+
+        foreach (var branchPrinter in branchPrinters)
+        {
+            foreach(var branch in branches)
+            {
+                if(branch.BranchId == branchPrinter.BranchId)
+                    result.Add(await ConvertBranchPrinterDtoToBranchPrinterModel(branchPrinter));
+            }
+        }
+
+        return result;
+    }
+
     public async Task<BranchPrinterModel> GetInstallationById(int installationId)
     {
         var branchPrinter = await _branchPrinterRepository.GetInstallationById(installationId);
+
+        if (branchPrinter == null)
+            throw new NotFoundException("Инсталляция не найдена");
 
         return await ConvertBranchPrinterDtoToBranchPrinterModel(branchPrinter);
     }
@@ -86,7 +122,7 @@ public class BranchPrinterService : IBranchPrinterService
         return printer.PrinterId;
     }
 
-    private async Task<int> GetPrinterSerialNumber(BranchName branchName)
+    private async Task<int> GetPrinterSerialNumber(BranchName branchName, int userSerialNumber)
     {
         var branches = await _branchRepository.GetBranchByName(branchName);
         var serialNumbers = new List<int>();
@@ -99,10 +135,10 @@ public class BranchPrinterService : IBranchPrinterService
                 serialNumbers.Add(serialNumber.PrinterSerialNumber);
         }
 
-        if (serialNumbers.Count > 0)
+        if (serialNumbers.Count > 0 && serialNumbers.Contains(userSerialNumber))
             return serialNumbers.Max() + 1;
         else
-            return 1;
+            return serialNumbers.Count > 0 ? userSerialNumber : 1;
     }
 
     private async Task<bool> GetPrinterIsDefault(BranchName branchName)
