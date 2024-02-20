@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintManagement.Api", "PrintManagement.Api\PrintManagement.Api.csproj", "{FBB571B4-812B-4F80-94EE-E89559DFE98C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrintManagement.Api", "PrintManagement.Api\PrintManagement.Api.csproj", "{FBB571B4-812B-4F80-94EE-E89559DFE98C}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "PrintManagement.DB", "PrintManagement.DB\PrintManagement.DB.sqlproj", "{43EABF27-A4EE-4A9A-A842-CB3614B07EE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintManagement.DataLayer", "PrintManagement.DataLayer\PrintManagement.DataLayer.csproj", "{2D6FAD92-D01A-4ACF-8AD5-9260A627B273}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrintManagement.DataLayer", "PrintManagement.DataLayer\PrintManagement.DataLayer.csproj", "{2D6FAD92-D01A-4ACF-8AD5-9260A627B273}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintManagement.BusinessLayer", "PrintManagement.BusinessLayer\PrintManagement.BusinessLayer.csproj", "{7981DDC6-1E97-4182-AD57-89B5D04949EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{2D6FAD92-D01A-4ACF-8AD5-9260A627B273}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D6FAD92-D01A-4ACF-8AD5-9260A627B273}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D6FAD92-D01A-4ACF-8AD5-9260A627B273}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7981DDC6-1E97-4182-AD57-89B5D04949EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7981DDC6-1E97-4182-AD57-89B5D04949EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7981DDC6-1E97-4182-AD57-89B5D04949EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7981DDC6-1E97-4182-AD57-89B5D04949EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

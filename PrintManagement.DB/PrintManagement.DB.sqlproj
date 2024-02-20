@@ -69,6 +69,5 @@
     <Build Include="dbo\Stored Procedures\Branch_GetAll.sql" />
     <Build Include="dbo\Stored Procedures\Employee_GetAll.sql" />
     <Build Include="dbo\Stored Procedures\Printer_GetAll.sql" />
-    <Build Include="dbo\Stored Procedures\Printer_GetByConnectionType.sql" />
   </ItemGroup>
 </Project>

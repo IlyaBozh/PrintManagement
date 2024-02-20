@@ -18,15 +18,4 @@ public class PrinterRepository : BaseRepository, IPrinterRepository
 
         return printers;
     }
-
-    public async Task<List<PrinterDto>> GetPrintersByConnectionType(string connectionType)
-    {
-        var printers = (await _connectionString.QueryAsync<PrinterDto>(
-            StoredProcedures.Printer_GetByConnectionType,
-            param: new { connectionType },
-            commandType: CommandType.StoredProcedure))
-            .ToList();
-
-        return printers;
-    }
 }
