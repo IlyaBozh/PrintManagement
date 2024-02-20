@@ -3,7 +3,7 @@
 public class StoredProcedures
 {
     public const string Branch_GetAll = "Branch_GetAll";
-    public const string Branch_GetByLocation = "Branch_GetByLocation";
+    public const string Branch_GetByName = "Branch_GetByName";
     public const string Branch_GetByNameAndLocation = "Branch_GetByNameAndLocation";
     public const string Branch_GetById = "Branch_GetById";
 

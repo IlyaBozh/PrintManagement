@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using PrintManagement.DataLayer.Enums;
 using PrintManagement.DataLayer.Models;
 using PrintManagement.DataLayer.Repositories.Interfaces;
 using System.Data;
@@ -26,22 +27,21 @@ public class BranchRepository : BaseRepository, IBranchRepository
             param: new { branchId },
             commandType: CommandType.StoredProcedure))
             .FirstOrDefault();
-        
         return branche;
     }
 
-    public async Task<List<BranchDto>> GetBranchByLocation(string branchLocation)
+    public async Task<List<BranchDto>> GetBranchByName(BranchName branchName)
     {
         var branches = (await _connectionString.QueryAsync<BranchDto>(
-            StoredProcedures.Branch_GetByLocation,
-            param: new { branchLocation },
+            StoredProcedures.Branch_GetByName,
+            param: new { branchName },
             commandType: CommandType.StoredProcedure))
             .ToList();
 
         return branches;
     }
 
-    public async Task<BranchDto> GetBranchByNameAndLocation(string branchName, string branchLocation)
+    public async Task<BranchDto> GetBranchByNameAndLocation(BranchName branchName, BranchLocation branchLocation)
     {
         var branche = (await _connectionString.QueryAsync<BranchDto>(
             StoredProcedures.Branch_GetByNameAndLocation,

@@ -1,5 +1,6 @@
 ﻿using PrintManagement.BusinessLayer.Models;
 using PrintManagement.BusinessLayer.Services.Interfaces;
+using PrintManagement.DataLayer.Enums;
 using PrintManagement.DataLayer.Models;
 using PrintManagement.DataLayer.Repositories.Interfaces;
 
@@ -27,9 +28,9 @@ public class BranchPrinterService : IBranchPrinterService
             PrinterId = printerId,
             BranchId = branchId,
             PrinterSerialNumber = printerInstallationInfo.PrinterSerialNumber == 0 
-            ? await GetPrinterSerialNumber(printerInstallationInfo.BranchLocation) 
+            ? await GetPrinterSerialNumber(printerInstallationInfo.BranchName) 
             : printerInstallationInfo.PrinterSerialNumber,
-            IsDefault = await GetPrinterIsDefault(printerInstallationInfo.BranchLocation)
+            IsDefault = await GetPrinterIsDefault(printerInstallationInfo.BranchName)
         };
 
         var result = await _branchPrinterRepository.AddInstallation(branchPrinterDto);
@@ -71,23 +72,23 @@ public class BranchPrinterService : IBranchPrinterService
 
     
     
-    private async Task<int> GetBranchId(string branchName, string branchLocation)
+    private async Task<int> GetBranchId(BranchName branchName, BranchLocation branchLocation)
     {
         var branch = await _branchRepository.GetBranchByNameAndLocation(branchName, branchLocation);
 
         return branch.BranchId;
     }
 
-    private async Task<int> GetPrinterId(string printerName)
+    private async Task<int> GetPrinterId(PrinterName printerName)
     {
         var printer = await _printerRepository.GetPrinterByName(printerName);
 
         return printer.PrinterId;
     }
 
-    private async Task<int> GetPrinterSerialNumber(string branchLocation)
+    private async Task<int> GetPrinterSerialNumber(BranchName branchName)
     {
-        var branches = await _branchRepository.GetBranchByLocation(branchLocation);
+        var branches = await _branchRepository.GetBranchByName(branchName);
         var serialNumbers = new List<int>();
 
         foreach (var branch in branches) 
@@ -104,9 +105,9 @@ public class BranchPrinterService : IBranchPrinterService
             return 1;
     }
 
-    private async Task<bool> GetPrinterIsDefault(string branchLocation)
+    private async Task<bool> GetPrinterIsDefault(BranchName branchName)
     {
-        var branches = await _branchRepository.GetBranchByLocation(branchLocation);
+        var branches = await _branchRepository.GetBranchByName(branchName);
 
         foreach (var branch in branches)
         {
@@ -126,7 +127,7 @@ public class BranchPrinterService : IBranchPrinterService
     {
         var branchDto = await _branchRepository.GetBranchById(DeletedBranchPrinter.BranchId);
 
-        var branches = await _branchRepository.GetBranchByLocation(branchDto.BranchLocation);
+        var branches = await _branchRepository.GetBranchByName(branchDto.BranchName);
 
         foreach (var branch in branches)
         {

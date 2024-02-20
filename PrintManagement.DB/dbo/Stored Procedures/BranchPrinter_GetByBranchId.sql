@@ -3,7 +3,9 @@
 
 AS
 BEGIN
-	SELECT PrinterSerialNumber
+	SELECT 
+		BranchPrinterId,
+		PrinterSerialNumber
 	FROM [dbo].[BranchPrinter]
 	WHERE BranchId=@BranchId
 END

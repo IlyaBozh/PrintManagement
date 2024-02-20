@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[Printer_GetByName]
-	@PrinterName nvarchar
+	@PrinterName int
 
 AS
 BEGIN

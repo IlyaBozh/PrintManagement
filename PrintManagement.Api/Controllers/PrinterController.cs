@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PrintManagement.Api.Models.Responses;
 using PrintManagement.BusinessLayer.Services.Interfaces;
+using PrintManagement.DataLayer.Enums;
 
 namespace PrintManagement.Api.Controllers;
 
@@ -30,7 +31,9 @@ public class PrinterController : ControllerBase
     [ProducesResponseType(typeof(List<AllPrinterResponse>), StatusCodes.Status200OK)]
     public async Task<ActionResult<List<AllPrinterResponse>>> GetPrintersByConnectionType(string connectionType)
     {
-        var branches = await _printerService.GetPrintersByConnectionType(connectionType);
+        var branches = await _printerService.GetPrintersByConnectionType(
+            (ConnectionType)Enum.Parse(typeof(ConnectionType), connectionType));
+
         return Ok(_mapper.Map<List<AllPrinterResponse>>(branches));
     }
 }

@@ -1,4 +1,5 @@
 ﻿using PrintManagement.BusinessLayer.Services.Interfaces;
+using PrintManagement.DataLayer.Enums;
 using PrintManagement.DataLayer.Models;
 using PrintManagement.DataLayer.Repositories.Interfaces;
 using System.Reflection;
@@ -16,10 +17,10 @@ public class PrinterService : IPrinterService
 
     public async Task<List<PrinterDto>> GetAllPrinters() => await _printerRepository.GetAllPrinters();
 
-    public async Task<List<PrinterDto>> GetPrintersByConnectionType(string connectionType)
+    public async Task<List<PrinterDto>> GetPrintersByConnectionType(ConnectionType connectionType)
     {
         var printers = await _printerRepository.GetAllPrinters();
 
-        return printers.Where(printer => string.Concat(printer.ConnectionType.Where(c => !char.IsWhiteSpace(c))) == connectionType).ToList();
+        return printers.Where(printer => printer.ConnectionType == connectionType).ToList();
     }
 }

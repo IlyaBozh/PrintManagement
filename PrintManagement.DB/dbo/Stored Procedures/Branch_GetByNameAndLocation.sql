@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[Branch_GetByNameAndLocation]
-	@BranchName nvarchar,
-	@BranchLocation nvarchar
+	@BranchName int,
+	@BranchLocation int
 
 AS
 BEGIN

@@ -1,9 +1,9 @@
-﻿CREATE PROCEDURE [dbo].[Branch_GetByLocation]
-	@BranchLocation nvarchar
+﻿CREATE PROCEDURE [dbo].[Branch_GetByName]
+	@BranchName int
 
 AS
 BEGIN
 	SELECT BranchId
 	FROM [dbo].[Branch]
-	WHERE BranchLocation=@BranchLocation
+	WHERE BranchName=@BranchName
 END
