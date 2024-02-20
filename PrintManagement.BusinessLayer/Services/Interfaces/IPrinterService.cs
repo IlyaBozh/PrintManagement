@@ -6,5 +6,5 @@ namespace PrintManagement.BusinessLayer.Services.Interfaces;
 public interface IPrinterService
 {
     public Task<List<PrinterDto>> GetAllPrinters();
-    public Task<List<PrinterDto>> GetPrintersByConnectionType(ConnectionType connectionType);
+    public Task<List<PrinterDto>> GetPrintersByConnectionType(string connectionType);
 }

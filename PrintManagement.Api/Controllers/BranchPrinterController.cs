@@ -24,7 +24,7 @@ public class BranchPrinterController : ControllerBase
 
     [HttpPost("[action]")]
     [ProducesResponseType(typeof(int), StatusCodes.Status201Created)]
-    public async Task<ActionResult<int>> AddInstallation(NewInstallationRequest newInstallation)
+    public async Task<ActionResult<int>> AddInstallation([FromBody] NewInstallationRequest newInstallation)
     {
         var result = await _branchPrinterService.AddInstallation(_mapper.Map<BranchPrinterModel>(newInstallation));
 
@@ -33,10 +33,19 @@ public class BranchPrinterController : ControllerBase
 
     [HttpGet("[action]")]
     [ProducesResponseType(typeof(NewInstallationRequest), StatusCodes.Status200OK)]
+    public async Task<ActionResult<List<NewInstallationRequest>>> GetInstallationsByBranchName(string branchName)
+    {
+        var instalations = await _branchPrinterService.GetInstallationsByBranchName(branchName);
+
+        return Ok(_mapper.Map<List<NewInstallationRequest>>(instalations));
+    }
+
+    [HttpGet("[action]")]
+    [ProducesResponseType(typeof(NewInstallationRequest), StatusCodes.Status200OK)]
     public async Task<ActionResult<List<NewInstallationRequest>>> GetAllInstallations()
     {
         var instalations = await _branchPrinterService.GetAllInstallations();
-        
+
         return Ok(_mapper.Map<List<NewInstallationRequest>>(instalations));
     }
 

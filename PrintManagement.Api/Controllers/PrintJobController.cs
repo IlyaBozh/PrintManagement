@@ -23,9 +23,11 @@ public class PrintJobController : ControllerBase
 
     [HttpPost("[action]")]
     [ProducesResponseType(typeof(int), StatusCodes.Status201Created)]
-    public async Task<ActionResult<int>> RegistrationJob(NewPrintJobRequest newPrintJob)
+    public async Task<ActionResult<int>> RegistrationJob([FromBody] NewPrintJobRequest newPrintJob)
     {
         var result = await _printJobService.RegistrationJob(_mapper.Map<PrintJobModel>(newPrintJob));
+
+        Thread.Sleep(5000);
 
         return Created($"{this.GetUrl()}/{result}", result);
     }

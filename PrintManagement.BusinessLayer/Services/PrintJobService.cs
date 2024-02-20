@@ -1,10 +1,8 @@
-﻿using CsvHelper;
-using Microsoft.VisualBasic.FileIO;
+﻿using Microsoft.VisualBasic.FileIO;
 using PrintManagement.BusinessLayer.Models;
 using PrintManagement.BusinessLayer.Services.Interfaces;
 using PrintManagement.DataLayer.Models;
 using PrintManagement.DataLayer.Repositories.Interfaces;
-using System.Globalization;
 using System.Text;
 
 namespace PrintManagement.BusinessLayer.Services;
@@ -44,19 +42,22 @@ public class PrintJobService : IPrintJobService
 
         var result = await _printJobRepository.RegistrationJob(printJobDto);
 
-        Thread.Sleep(5000);
-
         return result;
     }
 
     public async Task RegistrationJobFromCSV(Stream file)
     {
+        int count = 0;
+
         using (var parser = new TextFieldParser(file))
         {
             parser.TextFieldType = FieldType.Delimited;
             parser.SetDelimiters(",");
             while (!parser.EndOfData)
             {
+                if (count == 100)
+                    break;
+
                 string[] fields = parser.ReadFields();
 
                 var data = fields[0].Split(';');
@@ -73,6 +74,7 @@ public class PrintJobService : IPrintJobService
                 };
 
                 await RegistrationJob(printJob);
+                count++;
             }
         }
     }
