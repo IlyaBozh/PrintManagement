@@ -53,4 +53,23 @@ public class BranchPrinterRepository : BaseRepository, IBranchPrinterRepository
 
         return installation;
     }
+
+    public async Task<List<BranchPrinterDto>> GetInstallationsByBranchId(int branchId)
+    {
+        var installations = (await _connectionString.QueryAsync<BranchPrinterDto>(
+            StoredProcedures.BranchPrinter_GetByBranchId,
+            param: new { branchId },
+            commandType: CommandType.StoredProcedure))
+            .ToList();
+
+        return installations;
+    }
+
+    public async Task UpdatePrinterIsDefault(int branchPrinterId, bool isDefault)
+    {
+        await _connectionString.ExecuteAsync(
+            StoredProcedures.BranchPrinter_UpdateIsDefault,
+            param: new { branchPrinterId, isDefault },
+            commandType: CommandType.StoredProcedure);
+    }
 }

@@ -8,4 +8,6 @@ public interface IBranchPrinterRepository
     public Task<List<BranchPrinterDto>> GetAllInstallations();
     public Task<BranchPrinterDto> GetInstallationById(int installationId);
     public Task DeleteInstallation(int installationId);
+    public Task<List<BranchPrinterDto>> GetInstallationsByBranchId(int branchId);
+    public Task UpdatePrinterIsDefault(int branchPrinterId, bool isDefault);
 }

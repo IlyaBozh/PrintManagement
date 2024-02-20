@@ -18,4 +18,26 @@ public class PrinterRepository : BaseRepository, IPrinterRepository
 
         return printers;
     }
+
+    public async Task<PrinterDto> GetPrinterById(int printerId)
+    {
+        var printer = (await _connectionString.QueryAsync<PrinterDto>(
+           StoredProcedures.Printer_GetById,
+           param: new { printerId },
+           commandType: CommandType.StoredProcedure))
+           .FirstOrDefault();
+
+        return printer;
+    }
+
+    public async Task<PrinterDto> GetPrinterByName(string printerName)
+    {
+        var printer = (await _connectionString.QueryAsync<PrinterDto>(
+           StoredProcedures.Printer_GetByName,
+           param: new { printerName },
+           commandType: CommandType.StoredProcedure))
+           .FirstOrDefault();
+
+        return printer;
+    }
 }
