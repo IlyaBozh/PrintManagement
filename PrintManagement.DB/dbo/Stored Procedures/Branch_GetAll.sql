@@ -7,5 +7,4 @@ BEGIN
 		BranchName,
 		BranchLocation
 	FROM dbo.Branch
-
 END

@@ -69,5 +69,16 @@
     <Build Include="dbo\Stored Procedures\Branch_GetAll.sql" />
     <Build Include="dbo\Stored Procedures\Employee_GetAll.sql" />
     <Build Include="dbo\Stored Procedures\Printer_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\BranchPrinter_Add.sql" />
+    <Build Include="dbo\Stored Procedures\BranchPrinter_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\BranchPrinter_GetById.sql" />
+    <Build Include="dbo\Stored Procedures\BranchPrinter_Delete.sql" />
+    <Build Include="dbo\Stored Procedures\Branch_GetByNameAndLocation.sql" />
+    <Build Include="dbo\Stored Procedures\Printer_GetByName.sql" />
+    <Build Include="dbo\Stored Procedures\Branch_GetByLocation.sql" />
+    <Build Include="dbo\Stored Procedures\BranchPrinter_GetByBranchId.sql" />
+    <Build Include="dbo\Stored Procedures\Branch_GetById.sql" />
+    <Build Include="dbo\Stored Procedures\BranchPrinter_UpdateIsDefault.sql" />
+    <Build Include="dbo\Stored Procedures\Printer_GetById.sql" />
   </ItemGroup>
 </Project>

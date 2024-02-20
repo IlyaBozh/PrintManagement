@@ -21,9 +21,11 @@ public static class ProgramExtention
         services.AddScoped<IBranchRepository, BranchRepository>();
         services.AddScoped<IEmployeeRepository, EmployeeRepository>();
         services.AddScoped<IPrinterRepository, PrinterRepository>();
+        services.AddScoped<IBranchPrinterRepository, BranchPrinterRepository>();
 
         services.AddScoped<IBranchService, BranchService>();
         services.AddScoped<IEmployeeService, EmployeeService>();
         services.AddScoped<IPrinterService, PrinterService>();
+        services.AddScoped<IBranchPrinterService, BranchPrinterService>();
     }
 }
